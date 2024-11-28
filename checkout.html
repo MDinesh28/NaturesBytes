@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout - NaturesBytes</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <script>
+    // JavaScript for handling cart data and displaying summary
+    function loadCart() {
+      const storedCart = localStorage.getItem('cart');
+      return storedCart ? JSON.parse(storedCart) : [];
+    }
+
+    function displayCartSummary() {
+      const cart = loadCart();
+      let subtotal = 0;
+      cart.forEach(item => {
+        subtotal += item.total;
+      });
+
+      const shipping = 5.00;
+      const tax = subtotal * 0.08;
+      const total = subtotal + shipping + tax;
+
+      document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
+      document.getElementById('shipping').textContent = `$${shipping.toFixed(2)}`;
+      document.getElementById('tax').textContent = `$${tax.toFixed(2)}`;
+      document.getElementById('total').textContent = `$${total.toFixed(2)}`;
+    }
+
+    window.onload = displayCartSummary;
+  </script>
+</head>
+<body class="font-roboto bg-gray-100">
+
+  <header class="bg-green-600 text-white p-4">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-2xl font-bold">
+        NaturesBytes
+      </h1>
+      <nav>
+        <ul class="flex space-x-8">
+          <li><a class="hover:underline" href="index.html">Home</a></li>
+          <li><a class="hover:underline" href="products.html">Products</a></li>
+          <li><a class="hover:underline" href="cart.html">Cart</a></li>
+        </ul>
+      </nav>
+      <div class="relative group">
+        <button class="focus:outline-none">
+          <i class="fas fa-user-circle text-2xl"></i>
+        </button>
+        <!-- Dropdown Menu -->
+        <div class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2 z-20 hidden group-hover:block">
+          <a class="block px-4 py-2 text-gray-800 hover:bg-gray-200" href="profile.html">Profile</a>
+          <a class="block px-4 py-2 text-gray-800 hover:bg-gray-200" href="#">Settings</a>
+          <a class="block px-4 py-2 text-gray-800 hover:bg-gray-200 cursor-pointer" onclick="redirectToHome()">Logout</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container mx-auto p-6">
+    <h2 class="text-3xl font-bold text-center mb-6">Checkout</h2>
+    
+    <div class="bg-white shadow-lg rounded-lg p-6">
+      <!-- Shipping Information Form -->
+      <h3 class="text-xl font-semibold mb-4">Shipping Information</h3>
+      <form action="#" method="POST">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
+          <div>
+            <label class="block text-gray-700 font-medium mb-2" for="name">Full Name</label>
+            <input class="w-full p-3 border border-gray-300 rounded-lg" id="name" name="name" type="text" required />
+          </div>
+          <div>
+            <label class="block text-gray-700 font-medium mb-2" for="email">Email Address</label>
+            <input class="w-full p-3 border border-gray-300 rounded-lg" id="email" name="email" type="email" required />
+          </div>
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-700 font-medium mb-2" for="address">Address</label>
+          <input class="w-full p-3 border border-gray-300 rounded-lg" id="address" name="address" type="text" required />
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
+          <div>
+            <label class="block text-gray-700 font-medium mb-2" for="city">City</label>
+            <input class="w-full p-3 border border-gray-300 rounded-lg" id="city" name="city" type="text" required />
+          </div>
+          <div>
+            <label class="block text-gray-700 font-medium mb-2" for="zip">ZIP Code</label>
+            <input class="w-full p-3 border border-gray-300 rounded-lg" id="zip" name="zip" type="text" required />
+          </div>
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-700 font-medium mb-2" for="phone">Phone Number</label>
+          <input class="w-full p-3 border border-gray-300 rounded-lg" id="phone" name="phone" type="tel" required />
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-700 font-medium mb-2" for="payment-method">Payment Method</label>
+          <select class="w-full p-3 border border-gray-300 rounded-lg" id="payment-method" name="payment-method">
+            <option value="credit-card">Credit Card</option>
+            <option value="paypal">PayPal</option>
+            <option value="bank-transfer">Bank Transfer</option>
+          </select>
+        </div>
+        <div class="text-center">
+            <button class="bg-green-600 text-white px-6 py-2 rounded" type="submit">Complete Purchase</button>
+            
+          </div>
+          
+      </form>
+      <div class="text-center"><a href="index.html">
+        <button class="bg-gray-600 text-white px-6 py-2 rounded mt-4">Continue Shopping</button>
+      </a></div>
+
+      <!-- Order Summary -->
+      <h3 class="text-xl font-semibold mt-8 mb-4">Order Summary</h3>
+      <div class="bg-gray-100 p-4 rounded-lg shadow-md">
+        <p class="flex justify-between text-lg"><strong>Subtotal:</strong> <span id="subtotal">$0.00</span></p>
+        <p class="flex justify-between text-lg"><strong>Shipping:</strong> <span id="shipping">$0.00</span></p>
+        <p class="flex justify-between text-lg"><strong>Tax:</strong> <span id="tax">$0.00</span></p>
+        <p class="flex justify-between text-lg font-semibold"><strong>Total:</strong> <span id="total">$0.00</span></p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bg-green-600 text-white p-8">
+    <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="text-center md:text-left">
+        <h3 class="text-xl font-bold mb-2">About Us</h3>
+        <p>NaturesBytes is dedicated to bringing you the best traditional palm products. Our mission is to promote sustainable and healthy living through natural products.</p>
+      </div>
+      <div class="text-center">
+        <h3 class="text-xl font-bold mb-2">Quick Links</h3>
+        <ul>
+          <li><a class="hover:underline" href="index.html">Home</a></li>
+          <li><a class="hover:underline" href="products.html">Products</a></li>
+          <li><a class="hover:underline" href="cart.html">Cart</a></li>
+          <li><a class="hover:underline" href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="text-center md:text-right">
+        <h3 class="text-xl font-bold mb-2">Follow Us</h3>
+        <div class="flex justify-center md:justify-end space-x-4">
+          <a class="hover:text-gray-400" href="#"><i class="fab fa-facebook-f"></i></a>
+          <a class="hover:text-gray-400" href="#"><i class="fab fa-twitter"></i></a>
+          <a class="hover:text-gray-400" href="#"><i class="fab fa-instagram"></i></a>
+          <a class="hover:text-gray-400" href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-gray-400 mt-8 pt-4 text-center">
+      <p>© 2023 NaturesBytes. All rights reserved.</p>
+    </div>
+  </footer

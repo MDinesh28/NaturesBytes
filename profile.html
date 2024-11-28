@@ -1,0 +1,121 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>NaturesBytes</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    .hidden-content {
+      display: none;
+    }
+  </style>
+  <script>
+    function toggleContent(id) {
+      const content = document.getElementById(id);
+      const button = document.getElementById('toggle-button-' + id);
+      if (content.style.display === 'none' || content.style.display === '') {
+        content.style.display = 'block';
+        button.textContent = 'See Less';
+      } else {
+        content.style.display = 'none';
+        button.textContent = 'See More';
+      }
+    }
+
+    function updateProfile() {
+      // Simulate saving profile data
+      setTimeout(() => {
+        alert('Profile updated successfully!');
+        window.location.href = 'index.html';
+      }, 1000);
+    }
+  </script>
+</head>
+<body class="font-roboto bg-gray-100">
+  <header class="bg-green-600 text-white p-4">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-2xl font-bold">NaturesBytes</h1>
+      <nav>
+        <ul class="flex space-x-8">
+          <li><a class="hover:underline" href="index.html">Home</a></li>
+          <li><a class="hover:underline" href="products.html">Products</a></li>
+          <li><a class="hover:underline" href="cart.html">Cart</a></li>
+        </ul>
+      </nav>
+      <div class="relative">
+        <button class="focus:outline-none"><i class="fas fa-user-circle text-2xl"></i></button>
+        <div class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2 z-20 hidden">
+          <a class="block px-4 py-2 text-gray-800 hover:bg-gray-200" href="profile.html">Profile</a>
+          <a class="block px-4 py-2 text-gray-800 hover:bg-gray-200" href="#">Settings</a>
+          <a class="block px-4 py-2 text-gray-800 hover:bg-gray-200" href="#">Logout</a>
+        </div>
+      </div>
+    </div>
+  </header>
+  <section class="bg-green-700 text-white py-12">
+    <div class="container mx-auto text-center">
+      <h1 class="text-4xl font-bold mb-2">Your Profile</h1>
+      <p class="text-xl">Manage your account details and preferences.</p>
+    </div>
+  </section>
+  <main class="container mx-auto p-4">
+    <section class="mb-8">
+      <div class="bg-white p-6 rounded-lg shadow-lg">
+        <h2 class="text-2xl font-bold mb-4">Profile Information</h2>
+        <form onsubmit="event.preventDefault(); updateProfile();">
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="username">Username</label>
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username" value="john_doe"/>
+          </div>
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="email">Email</label>
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="Email" value="john_doe@example.com"/>
+          </div>
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="password">Password</label>
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="Password"/>
+          </div>
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="confirm-password">Confirm Password</label>
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="confirm-password" type="password" placeholder="Confirm Password"/>
+          </div>
+          <div class="flex items-center justify-between">
+            <button class="bg-green-600 text-white px-4 py-2 rounded focus:outline-none focus:shadow-outline" type="submit">Update Profile</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+  <footer class="bg-green-600 text-white p-8">
+    <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="text-center md:text-left">
+        <h3 class="text-xl font-bold mb-2">About Us</h3>
+        <p>NaturesBytes is dedicated to bringing you the best traditional palm products. Our mission is to promote sustainable and healthy living through natural products.</p>
+      </div>
+      <div class="text-center">
+        <h3 class="text-xl font-bold mb-2">Quick Links</h3>
+        <ul>
+          <li><a class="hover:underline" href="index.html">Home</a></li>
+          <li><a class="hover:underline" href="products.html">Products</a></li>
+          <li><a class="hover:underline" href="cart.html">Cart</a></li>
+          <li><a class="hover:underline" href="#">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="text-center md:text-right">
+        <h3 class="text-xl font-bold mb-2">Follow Us</h3>
+        <div class="flex justify-center md:justify-end space-x-4">
+          <a class="hover:text-gray-400" href="#"><i class="fab fa-facebook-f"></i></a>
+          <a class="hover:text-gray-400" href="#"><i class="fab fa-twitter"></i></a>
+          <a class="hover:text-gray-400" href="#"><i class="fab fa-instagram"></i></a>
+          <a class="hover:text-gray-400" href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-gray-400 mt-8 pt-4 text-center">
+      <p>© 2023 NaturesBytes. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

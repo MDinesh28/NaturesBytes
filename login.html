@@ -1,0 +1,171 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>NaturesBytes</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    .hidden-content {
+      display: none;
+    }
+    .bg-animation {
+      background: linear-gradient(45deg, #4CAF50, #81C784);
+      background-size: 400% 400%;
+      animation: gradientAnimation 15s ease infinite;
+    }
+    @keyframes gradientAnimation {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .fade-in {
+      animation: fadeIn 2s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .blink {
+      animation: blink 1s step-start infinite;
+    }
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+    .scroll {
+      overflow-y: auto;
+      max-height: 400px;
+    }
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      display: none;
+    }
+    .popup.active {
+      display: block;
+    }
+  </style>
+  <script>
+    function toggleForm() {
+      const loginForm = document.getElementById('login-form');
+      const signupForm = document.getElementById('signup-form');
+      if (loginForm.style.display === 'none') {
+        loginForm.style.display = 'block';
+        signupForm.style.display = 'none';
+      } else {
+        loginForm.style.display = 'none';
+        signupForm.style.display = 'block';
+      }
+    }
+
+    function login() {
+      const email = document.getElementById('login-email').value;
+      const password = document.getElementById('login-password').value;
+
+      if (!email || !password) {
+        showPopup('All fields are required.');
+        return;
+      }
+
+      // Simulate login process
+      setTimeout(() => {
+        showPopup('Login successful!');
+        setTimeout(() => {
+          window.location.href = 'index.html';
+        }, 2000);
+      }, 1000);
+    }
+
+    function signup() {
+      const username = document.getElementById('signup-username').value;
+      const email = document.getElementById('signup-email').value;
+      const password = document.getElementById('signup-password').value;
+      const confirmPassword = document.getElementById('signup-confirm-password').value;
+
+      if (!username || !email || !password || !confirmPassword) {
+        showPopup('All fields are required.');
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        showPopup('Passwords do not match.');
+        return;
+      }
+
+      // Simulate signup process
+      setTimeout(() => {
+        showPopup('Signup successful!');
+        setTimeout(() => {
+          window.location.href = 'index.html';
+        }, 2000);
+      }, 1000);
+    }
+
+    function showPopup(message) {
+      const popup = document.getElementById('popup');
+      popup.textContent = message;
+      popup.classList.add('active');
+      setTimeout(() => {
+        popup.classList.remove('active');
+      }, 2000);
+    }
+  </script>
+</head>
+<body class="font-roboto bg-gray-100 flex items-center justify-center min-h-screen bg-animation">
+  <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center">
+    <h1 class="text-white text-6xl font-bold fade-in blink">NaturesBytes</h1>
+  </div>
+  <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md z-10 scroll">
+    <div id="login-form">
+      <h2 class="text-2xl font-bold mb-4">Login</h2>
+      <form onsubmit="event.preventDefault(); login();">
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="login-email">Email</label>
+          <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="login-email" type="email" placeholder="Email"/>
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="login-password">Password</label>
+          <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="login-password" type="password" placeholder="Password"/>
+        </div>
+        <div class="flex items-center justify-between">
+          <button class="bg-green-600 text-white px-4 py-2 rounded focus:outline-none focus:shadow-outline" type="submit">Login</button>
+          <a class="inline-block align-baseline font-bold text-sm text-green-600 hover:text-green-800 cursor-pointer" onclick="toggleForm()">Don't have an account? Signup</a>
+        </div>
+      </form>
+    </div>
+    <div id="signup-form" style="display: none;">
+      <h2 class="text-2xl font-bold mb-4">Signup</h2>
+      <form onsubmit="event.preventDefault(); signup();">
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="signup-username">Username</label>
+          <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="signup-username" type="text" placeholder="Username"/>
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="signup-email">Email</label>
+          <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="signup-email" type="email" placeholder="Email"/>
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="signup-password">Password</label>
+          <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="signup-password" type="password" placeholder="Password"/>
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="signup-confirm-password">Confirm Password</label>
+          <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="signup-confirm-password" type="password" placeholder="Confirm Password"/>
+        </div>
+        <div class="flex items-center justify-between">
+          <button class="bg-green-600 text-white px-4 py-2 rounded focus:outline-none focus:shadow-outline" type="submit">Signup</button>
+          <a class="inline-block align-baseline font-bold text-sm text-green-600 hover:text-green-800 cursor-pointer" onclick="toggleForm()">Already have an account? Login</a>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div id="popup" class="popup"></div>
+</body>
+</html>
