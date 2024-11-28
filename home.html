@@ -1,82 +1,256 @@
 <html lang="en">
-<head>
+ <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>NaturesBytes</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <title>
+    NaturesBytes  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
   <style>
-    .background-image {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url("https://storage.googleapis.com/a1aa/image/tq8g38Z3wdY0HhZrkn5NxQR68hKeYy5eKXWQGh4IdOMpbl1TA.jpg");
-      background-size: cover;
-      background-position: center;
-      opacity: 0.8; /* Adjust the opacity here */
-      z-index: -1;
-    }
-    .logo-highlight {
-      background: linear-gradient(45deg, #4CAF50, #81C784);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: gradientAnimation 3s ease infinite, brightnessAnimation 1.5s ease-in-out infinite;
-    }
-    @keyframes gradientAnimation {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-    @keyframes brightnessAnimation {
-      0%, 100% { filter: brightness(1); }
-      50% { filter: brightness(1.5); }
-    }
-    .logo-box {
-      padding: 10px 20px;
-      border: 2px solid #4CAF50;
-      border-radius: 8px;
-      display: inline-block;
-      background-color: rgba(128, 128, 128, 0.6); /* Grey background with some transparency */
-    }
-    .sign-in-button {
-      animation: pulseAnimation 2s infinite;
-    }
-    @keyframes pulseAnimation {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-      100% { transform: scale(1); }
+    .hidden-content {
+      display: none;
     }
   </style>
-</head>
-<body class="font-roboto bg-gray-100 relative">
-  <div class="background-image"></div>
-  <div class="h-screen flex flex-col">
-    <div class="relative z-10 flex justify-between items-center p-6">
-      <div class="logo-box">
-        <div class="text-4xl font-bold logo-highlight">
-          NaturesBytes
+  <script>
+    function toggleContent(id) {
+      const content = document.getElementById(id);
+      const button = document.getElementById('toggle-button-' + id);
+      if (content.style.display === 'none' || content.style.display === '') {
+        content.style.display = 'block';
+        button.textContent = 'See Less';
+      } else {
+        content.style.display = 'none';
+        button.textContent = 'See More';
+      }
+    }
+    function redirectToHome() {
+    window.location.href = "index.html";
+  }
+  </script>
+ </head>
+ <body class="font-roboto bg-gray-100">
+  <header class="bg-green-600 text-white p-4">
+   <div class="container mx-auto flex justify-between items-center">
+    <h1 class="text-2xl font-bold">
+     NaturesBytes
+    </h1>
+    <nav>
+     <ul class="flex space-x-8">
+      <li>
+       <a class="hover:underline" href="home.html">
+        Home
+       </a>
+      </li>
+      <li>
+       <a class="hover:underline" href="Products.html">
+        Products
+       </a>
+      </li>
+      <li>
+       <a class="hover:underline" href="cart.html">
+        Cart
+       </a>
+      </li>
+     </ul>
+    </nav>
+    <div class="relative group">
+        <button class="focus:outline-none">
+          <i class="fas fa-user-circle text-2xl"></i>
+        </button>
+        <!-- Dropdown Menu -->
+        <div class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2 z-20 hidden group-hover:block">
+          <a class="block px-4 py-2 text-gray-800 hover:bg-gray-200" href="profile.html">Profile</a>
+          <a class="block px-4 py-2 text-gray-800 hover:bg-gray-200" href="#">Settings</a>
+          <a 
+            class="block px-4 py-2 text-gray-800 hover:bg-gray-200 cursor-pointer" 
+            onclick="redirectToHome()"
+          >
+            Logout
+          </a>
         </div>
       </div>
-      <div class="flex items-center space-x-4">
-        <a href="login.html"><button class="bg-green-600 text-white px-4 py-2 rounded sign-in-button">
-          Sign In
+     </div>
+   </div>
+  </header>
+  <section class="bg-green-700 text-white py-12">
+   <div class="container mx-auto text-center">
+    <h1 class="text-4xl font-bold mb-2">
+     NaturesBytes
+    </h1>
+    <p class="text-xl">
+     Nature, distilled into bytes.
+    </p>
+   </div>
+  </section>
+  <main class="container mx-auto p-4">
+   <section class="mb-8">
+    <div class="bg-white p-6 rounded-lg shadow-lg">
+     <h2 class="text-2xl font-bold mb-4">
+      Interesting Topics
+     </h2>
+     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="bg-gray-100 p-4 rounded-lg shadow-md">
+       <h3 class="text-xl font-bold">
+        Health Benefits of Jaggery
+       </h3>
+       <p class="text-gray-700">
+        Discover the numerous health benefits of incorporating jaggery into your diet.
+       </p>
+       <div id="hidden-content-1" class="hidden-content">
+        <p class="text-gray-700 mt-2">
+         Jaggery is rich in iron and other minerals, making it a great natural remedy for anemia. It also helps in digestion and can boost your immune system.
+        </p>
+       </div>
+       <div class="text-center mt-4">
+        <button id="toggle-button-hidden-content-1" class="bg-green-600 text-white px-4 py-2 rounded" onclick="toggleContent('hidden-content-1')">
+         See More
         </button>
-    </a>
+       </div>
       </div>
-    </div>
-    <div class="flex-grow flex items-center justify-center text-center">
-      <div class="bg-black bg-opacity-50 p-8 rounded-lg">
-        <h1 class="text-5xl md:text-6xl font-bold text-white mb-4">
-          Discover the Essence of Nature
-        </h1>
-        <h2 class="text-2xl md:text-3xl text-white mb-8">
-          Traditional Palm Products Delivered to Your Doorstep
-        </h2>
+      <div class="bg-gray-100 p-4 rounded-lg shadow-md">
+       <h3 class="text-xl font-bold">
+        Traditional Uses of Palm Wine
+       </h3>
+       <p class="text-gray-700">
+        Learn about the traditional and cultural significance of palm wine.
+       </p>
+       <div id="hidden-content-2" class="hidden-content">
+        <p class="text-gray-700 mt-2">
+         Palm wine is often used in traditional ceremonies and rituals. It is also known for its probiotic properties, which can aid in digestion.
+        </p>
+       </div>
+       <div class="text-center mt-4">
+        <button id="toggle-button-hidden-content-2" class="bg-green-600 text-white px-4 py-2 rounded" onclick="toggleContent('hidden-content-2')">
+         See More
+        </button>
+       </div>
       </div>
+      <div class="bg-gray-100 p-4 rounded-lg shadow-md">
+       <h3 class="text-xl font-bold">
+        Recipes with Ice Apple
+       </h3>
+       <p class="text-gray-700">
+        Explore delicious recipes that feature ice apple as a key ingredient.
+       </p>
+       <div id="hidden-content-3" class="hidden-content">
+        <p class="text-gray-700 mt-2">
+         Ice apple can be used in a variety of recipes, from refreshing summer drinks to exotic desserts. Its unique texture and flavor make it a versatile ingredient.
+        </p>
+       </div>
+       <div class="text-center mt-4">
+        <button id="toggle-button-hidden-content-3" class="bg-green-600 text-white px-4 py-2 rounded" onclick="toggleContent('hidden-content-3')">
+         See More
+        </button>
+       </div>
+      </div>
+     </div>
     </div>
-  </div>
-</body>
+   </section>
+   <section class="mb-8">
+    <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+     <h2 class="text-2xl font-bold mb-4">
+      More Useful Info About Products
+     </h2>
+     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="bg-gray-100 p-4 rounded-lg shadow-md flex flex-col items-center">
+       <img alt="Image of jaggery blocks on a wooden table" class="mb-4 rounded-lg" height="200" src="https://storage.googleapis.com/a1aa/image/RABnc4Ouv0p5DRvOgrwBCxAxrXQ0C7MLVHeYSUphtr6n6t6JA.jpg" width="300"/>
+       <h3 class="text-xl font-bold">
+        Jaggery
+       </h3>
+       <p class="text-gray-700">
+        Jaggery is a traditional non-centrifugal cane sugar consumed in Asia and Africa. It is a concentrated product of cane juice and often date or palm sap without separation of the molasses and crystals.
+       </p>
+      </div>
+      <div class="bg-gray-100 p-4 rounded-lg shadow-md flex flex-col items-center">
+       <img alt="Image of a glass of palm wine with palm trees in the background" class="mb-4 rounded-lg" height="200" src="https://storage.googleapis.com/a1aa/image/N0NorXrte1UBOyc9yl5zVF93lckV3dDITyYJ0eod0Nfgq3qnA.jpg" width="300"/>
+       <h3 class="text-xl font-bold">
+        Palm Wine
+       </h3>
+       <p class="text-gray-700">
+        Palm wine, also known as "toddy," is an alcoholic beverage created from the sap of various species of palm tree such as the palmyra, date palms, and coconut palms.
+       </p>
+      </div>
+      <div class="bg-gray-100 p-4 rounded-lg shadow-md flex flex-col items-center">
+       <img alt="Image of ice apples on a plate with a rustic background" class="mb-4 rounded-lg" height="200" src="https://storage.googleapis.com/a1aa/image/4Hyus5yRkDpAJhOCpejcdl6W9kE7f0ieeV7C07XUQwOEVvVPB.jpg" width="300"/>
+       <h3 class="text-xl font-bold">
+        Ice Apple
+       </h3>
+       <p class="text-gray-700">
+        Ice apple, also known as "tadgola" or "nungu," is a translucent, pale white, juicy fruit from the sugar palm tree. It is a refreshing summer fruit popular in tropical regions.
+       </p>
+      </div>
+     </div>
+    </div>
+   </section>
+  </main>
+  <footer class="bg-green-600 text-white p-8">
+   <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div class="text-center md:text-left">
+     <h3 class="text-xl font-bold mb-2">
+      About Us
+     </h3>
+     <p>
+      NaturesBytes is dedicated to bringing you the best traditional palm products. Our mission is to promote sustainable and healthy living through natural products.
+     </p>
+    </div>
+    <div class="text-center">
+     <h3 class="text-xl font-bold mb-2">
+      Quick Links
+     </h3>
+     <ul>
+      <li>
+       <a class="hover:underline" href="home.html">
+        Home
+       </a>
+      </li>
+      <li>
+       <a class="hover:underline" href="Products.html">
+        Products
+       </a>
+      </li>
+      <li>
+       <a class="hover:underline" href="cart.html">
+        Cart
+       </a>
+      </li>
+      <li>
+       <a class="hover:underline" href="contact.html">
+        Contact Us
+       </a>
+      </li>
+     </ul>
+    </div>
+    <div class="text-center md:text-right">
+     <h3 class="text-xl font-bold mb-2">
+      Follow Us
+     </h3>
+     <div class="flex justify-center md:justify-end space-x-4">
+      <a class="hover:text-gray-400" href="#">
+       <i class="fab fa-facebook-f">
+       </i>
+      </a>
+      <a class="hover:text-gray-400" href="#">
+       <i class="fab fa-twitter">
+       </i>
+      </a>
+      <a class="hover:text-gray-400" href="#">
+       <i class="fab fa-instagram">
+       </i>
+      </a>
+      <a class="hover:text-gray-400" href="#">
+       <i class="fab fa-linkedin-in">
+       </i>
+      </a>
+     </div>
+    </div>
+   </div>
+   <div class="border-t border-gray-400 mt-8 pt-4 text-center">
+    <p>
+     © 2023 NaturesBytes. All rights reserved.
+    </p>
+   </div>
+  </footer>
+ </body>
 </html>
