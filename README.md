@@ -9,3 +9,5 @@
 ### To remove container
 
     docker rm $(docker ps -qa)
+### Project walkthrough
+[NaturesBytes](NaturesBytes.png)
