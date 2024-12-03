@@ -1,0 +1,31 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout Code') {
+            steps {
+                // Clone the repository from GitHub
+                git branch: 'master', url: 'https://github.com/MDinesh28/NaturesBytes.git'
+            }
+        }
+        stage('Build Docker Image') {
+            steps {
+                // Build the Docker image
+                script {
+                    sh 'docker build -t naturesbytes .'
+                }
+            }
+        }
+        stage('Run Docker Container') {
+            steps {
+                // Stop and remove any existing container with the same name
+                script {
+                    sh '''
+                    docker rm -f naturesbytes-container || true
+                    docker run -d -p 82:80 --name naturesbytes-container naturesbytes
+                    '''
+                }
+            }
+        }
+    }
+}
